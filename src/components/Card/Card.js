@@ -1,20 +1,32 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 
-
-const Card = ({movie}) => {
-  const {Title,Poster,Year,Type,id} = movie
-  return (
-    <div className="col-md-4" key={id}>
-      <div className="card">
-        <img src={Poster} alt={Title} className="card-img-top" width="100"/>
-        <h4>
-          {Title} {Year}
-        </h4>
-        <p>{Type}</p>
+const Card = ({ movie }) => (
+  <div className="col-md-4">
+    <div className="card animated fadeInUp">
+      <img
+        src={movie.Poster}
+        alt={movie.Title}
+        className="card-img-top"
+        width="100"
+      />
+      <div className="card-body">
+        <h4>{`${movie.Title} (${movie.Year})`}</h4>
+        <p>{`Type: ${movie.Type}`}</p>
       </div>
     </div>
-  );
-}
+  </div>
+)
+
+Card.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.string,
+    Title: PropTypes.string,
+    Year: PropTypes.string,
+    Poster: PropTypes.string,
+    Type: PropTypes.string,
+  }).isRequired,
+};
 
 export default Card;
